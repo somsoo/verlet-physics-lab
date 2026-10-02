@@ -1,0 +1,91 @@
+:root {
+  --bg-color: #030712;
+  --surface: #111827;
+  --surface-border: #1f2937;
+  --primary: #ec4899;
+  --accent: #8b5cf6;
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+  width: 100%;
+}
+.ad-top-wrapper {
+  width: 100%; max-height: 90px; overflow: hidden;
+  background: var(--surface); border-bottom: 1px solid var(--surface-border);
+  display: flex; justify-content: center;
+}
+.ad-top-box { width: 100%; max-width: 1200px; max-height: 90px; overflow: hidden; }
+.app-header {
+  padding: 1rem; text-align: center;
+  background: linear-gradient(180deg, #111827 0%, #030712 100%);
+  border-bottom: 1px solid var(--surface-border);
+}
+.header-inner { max-width: 800px; margin: 0 auto; }
+.brand-badge {
+  display: inline-block; font-size: 0.75rem; background: rgba(236, 72, 153, 0.2);
+  color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 999px;
+  margin-bottom: 0.4rem; font-weight: 700; border: 1px solid var(--primary);
+}
+.app-title { font-size: clamp(1.1rem, 4vw, 1.6rem); font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app-subtitle { font-size: clamp(0.75rem, 2.5vw, 0.85rem); color: var(--text-muted); margin-top: 0.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.main-container { max-width: 800px; margin: 0 auto; padding: 1rem; width: 100%; }
+.mode-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.tab-btn {
+  flex: 1; padding: 0.6rem 0.2rem; background: var(--surface);
+  border: 1px solid var(--surface-border); color: var(--text-muted);
+  border-radius: 8px; font-weight: 700; cursor: pointer;
+  font-size: clamp(0.75rem, 2.8vw, 0.9rem); white-space: nowrap;
+}
+.tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.sim-viewport-box {
+  background: #000; border: 1px solid var(--surface-border);
+  border-radius: 12px; overflow: hidden; margin-bottom: 1rem;
+  display: flex; justify-content: center;
+}
+#physicsCanvas { max-width: 100%; height: auto; display: block; touch-action: none; }
+.controls-card {
+  background: var(--surface); border: 1px solid var(--surface-border);
+  border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+}
+.controls-card.hidden { display: none; }
+.readout-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem; text-align: center; margin-bottom: 1rem;
+}
+.readout-item { background: #030712; padding: 0.6rem 0.2rem; border-radius: 8px; border: 1px solid var(--surface-border); }
+.r-label { display: block; font-size: 0.7rem; color: var(--text-muted); }
+.r-val { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+.sliders-grid { display: grid; gap: 0.8rem; margin-bottom: 1rem; }
+.slider-row label { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.2rem; }
+.slider-row input { width: 100%; accent-color: var(--primary); }
+.planet-row { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.planet-label { font-size: 0.8rem; color: var(--text-muted); }
+.planet-btn {
+  padding: 0.4rem 0.6rem; background: #030712; border: 1px solid var(--surface-border);
+  color: var(--text-muted); border-radius: 6px; font-size: 0.75rem; cursor: pointer;
+}
+.planet-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.action-btn-row { display: flex; gap: 0.5rem; }
+.action-btn { flex: 1; padding: 0.7rem; border-radius: 8px; font-weight: 700; cursor: pointer; border: none; font-size: 0.9rem; }
+.action-btn.primary { background: var(--primary); color: #fff; }
+.action-btn.secondary { background: #1f2937; color: #fff; border: 1px solid var(--surface-border); }
+.energy-box { background: #030712; border: 1px solid var(--surface-border); border-radius: 8px; padding: 0.8rem; margin-bottom: 0.8rem; }
+.energy-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+.energy-bar-wrap { height: 16px; background: #1f2937; border-radius: 999px; overflow: hidden; display: flex; }
+.energy-bar-ek { background: #10b981; height: 100%; transition: width 0.05s linear; }
+.energy-bar-ep { background: #ec4899; height: 100%; transition: width 0.05s linear; }
+.matrix-hint { text-align: center; font-size: 0.8rem; color: var(--text-muted); }
+.ad-mid-wrapper, .ad-bot-wrapper { margin: 1.5rem 0; text-align: center; }
+.edu-card { background: var(--surface); border: 1px solid var(--surface-border); border-radius: 12px; padding: 1.2rem; margin: 1.5rem 0; }
+.edu-card h2 { font-size: 1rem; color: var(--primary); margin-bottom: 0.5rem; }
+.edu-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+.app-footer { background: #030712; border-top: 1px solid var(--surface-border); padding: 1.5rem 1rem; text-align: center; }
+.copyright { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.4rem; }
+.footer-nav a { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; margin: 0 0.5rem; }

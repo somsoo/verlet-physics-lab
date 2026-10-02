@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>2D 물리 역학 가상 실험실 | 포물선 운동 & 에너지 보존 시뮬레이터</title>
+  <meta name="description" content="중력, 발사 각도, 공기 저항을 조절하며 포물선 궤적과 단진자 역학적 에너지 보존 법칙을 실시간 60fps로 탐구하는 2D 물리 실험실입니다.">
+  <link rel="canonical" href="https://verlet-physics-lab.enjoy-onepage.com/">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1204958742918459" crossorigin="anonymous"></script>
+</head>
+<body>
+  <aside class="ad-top-wrapper" aria-label="스폰서 링크">
+    <div class="ad-top-box">
+      <ins class="adsbygoogle"
+           style="display:block; max-height:90px;"
+           data-ad-client="ca-pub-1204958742918459"
+           data-ad-slot="3824727725"
+           data-ad-format="horizontal"
+           data-full-width-responsive="false"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </aside>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-row">
+        <span class="brand-badge">중고등 물리학 인터랙티브 3.2</span>
+        <h1 class="app-title">2D 물리 역학 가상 실험실</h1>
+      </div>
+      <p class="app-subtitle">포물선 운동 벡터와 단진자 역학적 에너지 보존 실시간 시뮬레이션</p>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <nav class="mode-tabs">
+      <button class="tab-btn active" id="tabCannon">포물선 대포</button>
+      <button class="tab-btn" id="tabPendulum">단진자 에너지 보존</button>
+    </nav>
+
+    <!-- Canvas Sandbox -->
+    <div class="sim-viewport-box">
+      <canvas id="physicsCanvas" width="600" height="340"></canvas>
+    </div>
+
+    <!-- Cannon Controls -->
+    <section class="controls-card" id="ctrlCannon">
+      <div class="readout-grid">
+        <div class="readout-item">
+          <span class="r-label">최고 도달 높이</span>
+          <span class="r-val" id="valMaxH">0.0 m</span>
+        </div>
+        <div class="readout-item">
+          <span class="r-label">수평 비행 거리</span>
+          <span class="r-val" id="valDist">0.0 m</span>
+        </div>
+        <div class="readout-item">
+          <span class="r-label">비행 시간</span>
+          <span class="r-val" id="valTime">0.0 s</span>
+        </div>
+      </div>
+
+      <div class="sliders-grid">
+        <div class="slider-row">
+          <label>발사 각도: <span id="lblAngle">45°</span></label>
+          <input type="range" id="rngAngle" min="5" max="85" value="45" />
+        </div>
+        <div class="slider-row">
+          <label>초기 속도: <span id="lblSpeed">30 m/s</span></label>
+          <input type="range" id="rngSpeed" min="10" max="60" value="30" />
+        </div>
+      </div>
+
+      <div class="planet-row">
+        <span class="planet-label">중력 환경:</span>
+        <button class="planet-btn active" data-g="9.8">지구 (9.8m/s²)</button>
+        <button class="planet-btn" data-g="1.62">달 (1.6m/s²)</button>
+        <button class="planet-btn" data-g="3.72">화성 (3.7m/s²)</button>
+      </div>
+
+      <div class="action-btn-row">
+        <button class="action-btn primary" id="btnFire">대포 발사! 🚀</button>
+        <button class="action-btn secondary" id="btnClearTraces">궤적 지우기</button>
+      </div>
+    </section>
+
+    <!-- Pendulum Controls -->
+    <section class="controls-card hidden" id="ctrlPendulum">
+      <div class="energy-box">
+        <div class="energy-labels">
+          <span>운동 에너지 (Ek)</span>
+          <span>위치 에너지 (Ep)</span>
+          <span>역학적 총에너지</span>
+        </div>
+        <div class="energy-bar-wrap">
+          <div class="energy-bar-ek" id="barEk" style="width: 50%;"></div>
+          <div class="energy-bar-ep" id="barEp" style="width: 50%;"></div>
+        </div>
+      </div>
+      <p class="matrix-hint">마우스로 추를 잡고 원하는 각도로 당겼다 놓아보세요!</p>
+    </section>
+
+    <aside class="ad-mid-wrapper" aria-label="스폰서 링크">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1204958742918459"
+           data-ad-slot="1186914926"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </aside>
+
+    <section class="edu-card">
+      <h2>역학적 에너지 보존 법칙이란?</h2>
+      <p>공기 저항과 마찰이 없을 때 물체의 운동 에너지($E_k = rac{1}{2}mv^2$)와 위치 에너지($E_p = mgh$)의 합은 항상 일정하게 보존됩니다. 단진자가 최저점을 지날 때는 위치 에너지가 모두 운동 에너지로 전환되어 속력이 최대가 됩니다.</p>
+    </section>
+  </main>
+
+  <aside class="ad-bot-wrapper" aria-label="스폰서 추천">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1204958742918459"
+         data-ad-slot="3416334507"
+         data-ad-format="autorelaxed"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p class="copyright">© 2026 2D 물리 역학 가상 실험실. All rights reserved.</p>
+      <nav class="footer-nav">
+        <a href="about.html">도구 소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
